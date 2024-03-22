@@ -20,4 +20,5 @@ export type MDXFrontMatter = {
   description?: string;
   date: string;
   tags?: Array<string>;
+  status: "draft" | "published";
 };

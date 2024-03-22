@@ -1,14 +1,27 @@
-import Script from "next/script";
+import dynamic from "next/dynamic";
 
-export const Comments = () => (
-  <div className="p-5 bg-slate-700">
-    <Script
-      async
-      defer
-      src="https://zoyaworld.disqus.com/embed.js"
-      data-timestamp={new Date()}
-    />
+type Props = Readonly<{
+  slug: string;
+  title: string;
+}>;
 
-    <div id="disqus_thread"></div>
-  </div>
-);
+export const Comments = ({ slug: identifier, title }: Props) => {
+  const url = typeof window !== "undefined" ? window.location.href : "";
+
+  const DiscussionEmbed = dynamic(
+    () => import("disqus-react").then((mod) => mod.DiscussionEmbed),
+    { ssr: false }
+  );
+
+  const disqusConfig = {
+    url,
+    identifier,
+    title,
+  };
+
+  return (
+    <div style={{ colorScheme: "initial" }}>
+      <DiscussionEmbed shortname="zoyaworld" config={disqusConfig} />
+    </div>
+  );
+};

@@ -13,6 +13,10 @@ export const getMdx = (fileName: string) => {
 
   const { data, content } = matter(docSource);
 
+  if (data.status === "draft") {
+    return;
+  }
+
   return {
     frontMatter: {
       ...data,
@@ -23,10 +27,11 @@ export const getMdx = (fileName: string) => {
 };
 
 export const getAllMdx = () => {
-  const items = fs.readdirSync(postsPath).map((item) => getMdx(item));
+  const items = fs.readdirSync(postsPath).map(getMdx).filter(Boolean);
+
   return items.sort(
     (a, b) =>
-      new Date(b.frontMatter.date).getTime() -
-      new Date(a.frontMatter.date).getTime()
+      new Date(b!.frontMatter.date).getTime() -
+      new Date(a!.frontMatter.date).getTime()
   );
 };

@@ -27,8 +27,10 @@ export const ThemeSelect = () => {
 
   if (!mounted) return null;
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setTheme(e.target.value);
+    window.location.reload();
+  };
 
   return (
     <div className="relative inline-block">
