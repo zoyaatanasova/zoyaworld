@@ -36,9 +36,22 @@ export const Footer: React.FC = () => {
           })}
         </ul>
       ) : null}
+
       <div className="mt-8 flex justify-center">
         <ThemeSelect />
       </div>
+
+      <p className="text-center mt-8">
+        Разработено с ⚛️, ❤️ и ☕️ от{" "}
+        <a
+          href="https://atanas.info"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:underline"
+        >
+          Атанас Атанасов
+        </a>
+      </p>
     </footer>
   );
 };

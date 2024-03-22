@@ -46,7 +46,7 @@ const Post: NextPage<PostProps> = ({ frontMatter, mdx, previous, next }) => {
                     "dark:text-gray-400"
                   )}
                 >
-                  Previous
+                  Предишна публикация
                 </p>
                 <Link href={`/posts/${previous?.slug}`} className="font-bold">
                   {previous?.title}
@@ -62,7 +62,7 @@ const Post: NextPage<PostProps> = ({ frontMatter, mdx, previous, next }) => {
                     "dark:text-gray-400"
                   )}
                 >
-                  Next
+                  Следваща публикация
                 </p>
                 <Link href={`/posts/${next?.slug}`} className="font-bold">
                   {next?.title}
