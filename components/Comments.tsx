@@ -8,7 +8,7 @@ type Props = Readonly<{
 export const Comments = ({ slug: identifier, title }: Props) => {
   const url = typeof window !== "undefined" ? window.location.href : "";
 
-  const DiscussionEmbed = dynamic(
+  const DiscussionEmbed = dynamic<any>(
     () => import("disqus-react").then((mod) => mod.DiscussionEmbed),
     { ssr: false }
   );

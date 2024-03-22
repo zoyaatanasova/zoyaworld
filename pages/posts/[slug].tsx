@@ -22,62 +22,63 @@ interface PostProps {
   next: MDXFrontMatter | null;
 }
 
-const Post: NextPage<PostProps> = ({ frontMatter, mdx, previous, next }) => {
-  return (
-    <>
-      <Page {...frontMatter}>
-        <Prose>
-          <MDXRemote {...mdx} components={components} />
-        </Prose>
-        {previous || next ? (
-          <nav
-            className={cx(
-              "mt-8 pt-8 grid grid-cols-2 gap-8 border-t",
-              "border-gray-200",
-              "dark:border-gray-700"
-            )}
-          >
-            {previous ? (
-              <div>
-                <p
-                  className={cx(
-                    "mb-2 uppercase tracking-wider text-sm",
-                    "text-gray-500",
-                    "dark:text-gray-400"
-                  )}
-                >
-                  Предишна публикация
-                </p>
-                <Link href={`/posts/${previous?.slug}`} className="font-bold">
-                  {previous?.title}
-                </Link>
-              </div>
-            ) : null}
-            {next ? (
-              <div className="col-start-2 text-right">
-                <p
-                  className={cx(
-                    "mb-2 uppercase tracking-wider text-sm",
-                    "text-gray-500",
-                    "dark:text-gray-400"
-                  )}
-                >
-                  Следваща публикация
-                </p>
-                <Link href={`/posts/${next?.slug}`} className="font-bold">
-                  {next?.title}
-                </Link>
-              </div>
-            ) : null}
-          </nav>
+const Post: NextPage<PostProps> = ({ frontMatter, mdx, previous, next }) => (
+  <Page {...frontMatter}>
+    <Prose>
+      <MDXRemote {...mdx} components={components} />
+    </Prose>
+
+    {previous || next ? (
+      <nav
+        className={cx(
+          "mt-8 pt-8 grid grid-cols-2 gap-8 border-t",
+          "border-gray-200",
+          "dark:border-gray-700"
+        )}
+      >
+        {previous ? (
+          <div>
+            <p
+              className={cx(
+                "mb-2 uppercase tracking-wider text-sm",
+                "text-gray-500",
+                "dark:text-gray-400"
+              )}
+            >
+              Предишна публикация
+            </p>
+
+            <Link href={`/posts/${previous?.slug}`} className="font-bold">
+              {previous?.title}
+            </Link>
+          </div>
         ) : null}
-      </Page>
-    </>
-  );
-};
+
+        {next ? (
+          <div className="col-start-2 text-right">
+            <p
+              className={cx(
+                "mb-2 uppercase tracking-wider text-sm",
+                "text-gray-500",
+                "dark:text-gray-400"
+              )}
+            >
+              Следваща публикация
+            </p>
+
+            <Link href={`/posts/${next?.slug}`} className="font-bold">
+              {next?.title}
+            </Link>
+          </div>
+        ) : null}
+      </nav>
+    ) : null}
+  </Page>
+);
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const mdxFiles = getAllMdx();
+
   return {
     paths: mdxFiles.map((file) => ({
       params: { slug: file.frontMatter.slug },
@@ -99,6 +100,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     },
     scope: frontMatter,
   });
+
   return {
     props: {
       frontMatter,

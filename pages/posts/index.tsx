@@ -8,21 +8,15 @@ interface PostsProps {
   posts: Array<MDXFrontMatter>;
 }
 
-const Posts: NextPage<PostsProps> = ({ posts }) => {
-  return (
-    <>
-      <Page
-        title="Posts"
-        description="Lorem ipsum dolor sit amet consectetur adipisicing elit."
-      >
-        <PostList posts={posts} />
-      </Page>
-    </>
-  );
-};
+const Posts: NextPage<PostsProps> = ({ posts }) => (
+  <Page title="Публикации" description="">
+    <PostList posts={posts} />
+  </Page>
+);
 
 export const getStaticProps: GetStaticProps = async () => {
   const mdxFiles = getAllMdx().map((post) => post["frontMatter"]);
+
   return {
     props: {
       posts: mdxFiles,

@@ -47,9 +47,7 @@ const Home: NextPage<HomeProps> = ({ posts }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const mdxFiles = getAllMdx()
-    .filter(Boolean)
-    .map((post) => post!["frontMatter"]);
+  const mdxFiles = getAllMdx().map((post) => post!["frontMatter"]);
 
   return {
     props: {

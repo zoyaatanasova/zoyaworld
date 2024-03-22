@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         href="#main"
         className="fixed p-2 top-0 left-0 -translate-y-full focus:translate-y-0"
       >
-        Skip to main content
+        Продължете към основното съдържание
       </a>
       <div className="flex flex-col max-w-3xl mx-auto min-h-full px-4">
         <Header />
